@@ -1,18 +1,18 @@
 package com.phoebedev.SpringBootWeb_2.controller;
 
 import com.phoebedev.SpringBootWeb_2.dto.request.UserRequestDto;
-import com.phoebedev.SpringBootWeb_2.dto.response.UserResponseDto;
-import org.springframework.stereotype.Controller;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.Min;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/users")
 public class UserController {
 
-    @PostMapping(value = "/", headers = "apiKey=v1.0")
-    public String addUser(@RequestBody UserRequestDto userDto) {
+    @PostMapping(value = "/addUser", headers = "apiKey=v1.0")
+    public String addUser(@Valid @RequestBody UserRequestDto userDto) {
         return "User added successfully";
     }
 
@@ -31,7 +31,7 @@ public class UserController {
     }
 
     @DeleteMapping("/{userId}")
-    public String deleteUser(@PathVariable int userId) {
+    public String deleteUser(@Min(1) @PathVariable int userId) {
         System.out.println("Request delete userID= " + userId);
         return "User deleted successfully";
     }
@@ -39,7 +39,7 @@ public class UserController {
     @GetMapping("/{userId}")
     public UserRequestDto getUser(@PathVariable int userId) {
         System.out.println("Request retrieve userID= " + userId);
-        return new UserRequestDto("acc1", "acc", "a@gmail.com", "123456");
+        return new UserRequestDto("acc1", "acc", "a@gmail.com", "1234567890");
     }
 
     @GetMapping("listUser")
@@ -48,9 +48,9 @@ public class UserController {
             @RequestParam(defaultValue = "10") int pageSize) {
         System.out.println("Request retrieve all users");
         return List.of(
-                new UserRequestDto("acc1", "acc", "a@gmail.com", "123456"),
-                new UserRequestDto("acc2", "acc", "b@gmail.com", "123456"),
-                new UserRequestDto("acc3", "acc", "c@gmail.com", "123456")
+                new UserRequestDto("acc1", "acc", "a@gmail.com", "1234568901"),
+                new UserRequestDto("acc2", "acc", "b@gmail.com", "1234567890"),
+                new UserRequestDto("acc3", "acc", "c@gmail.com", "1234567890")
         );
     }
 }
