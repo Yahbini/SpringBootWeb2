@@ -1,9 +1,8 @@
-package com.phoebedev.SpringBootWeb_2.util;
+package com.phoebedev.SpringBootWeb_2.validations;
 
+import com.phoebedev.SpringBootWeb_2.interfaces.PhoneNumber;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
-
-import java.lang.annotation.Annotation;
 
 public class PhoneValidator implements ConstraintValidator<PhoneNumber, String> {
     @Override
