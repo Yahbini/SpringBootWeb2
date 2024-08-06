@@ -47,6 +47,10 @@ public class UserRequestDto implements Serializable {
     @NotEmpty
     List<String> permission;
 
-    public UserRequestDto(String acc1, String acc, String mail, String number) {
+    public UserRequestDto(String firstName, String lastName, String email, String phone) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phone = phone;
     }
 }
