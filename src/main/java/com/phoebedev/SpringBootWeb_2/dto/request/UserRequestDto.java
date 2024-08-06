@@ -1,7 +1,13 @@
 package com.phoebedev.SpringBootWeb_2.dto.request;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.phoebedev.SpringBootWeb_2.util.PhoneNumber;
+import com.phoebedev.SpringBootWeb_2.enums.Gender;
+import com.phoebedev.SpringBootWeb_2.enums.UserType;
+import com.phoebedev.SpringBootWeb_2.interfaces.EnumPattern;
+import com.phoebedev.SpringBootWeb_2.interfaces.EnumValue;
+import com.phoebedev.SpringBootWeb_2.interfaces.GenderSubSet;
+import com.phoebedev.SpringBootWeb_2.interfaces.PhoneNumber;
+import com.phoebedev.SpringBootWeb_2.enums.UserStatus;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,6 +28,8 @@ public class UserRequestDto implements Serializable {
     private String firstName;
     @NotNull(message = "lastname must be not blank")
     private String lastName;
+    @GenderSubSet(anyOf = {Gender.MALE, Gender.FEMALE, Gender.OTHER})
+    private Gender gender;
     @Email(message = "email invalid format")
     private String email;
 //    @Pattern(regexp = "^\\d{10}$", message= "phone invalid format")
@@ -31,6 +39,11 @@ public class UserRequestDto implements Serializable {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @JsonFormat(pattern = "dd/MM/yyyy")
     private Date dob;
+    @EnumPattern(name = "status", regex = "ACTIVE|INACTIVE|NONE")
+    private UserStatus status;
+    @NotBlank(message = "type must be not null")
+    @EnumValue(name="type", enumClass = UserType.class)
+    private String type;
     @NotEmpty
     List<String> permission;
 

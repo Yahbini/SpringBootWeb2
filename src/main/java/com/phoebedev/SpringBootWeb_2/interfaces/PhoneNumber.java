@@ -1,5 +1,6 @@
-package com.phoebedev.SpringBootWeb_2.util;
+package com.phoebedev.SpringBootWeb_2.interfaces;
 
+import com.phoebedev.SpringBootWeb_2.validations.PhoneValidator;
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 
