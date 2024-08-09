@@ -21,7 +21,7 @@ public class EnumPatternValidator implements ConstraintValidator<EnumPattern, En
     }
 
     @Override
-    public boolean isValid(Enum<?> value, ConstraintValidatorContext constraintValidatorContext) {
+    public boolean isValid(Enum<?> value, ConstraintValidatorContext context) {
         if (value == null) {
             return true;
         }
