@@ -3,6 +3,7 @@ package com.phoebedev.SpringBootWeb_2.controller;
 import com.phoebedev.SpringBootWeb_2.dto.request.UserRequestDto;
 import com.phoebedev.SpringBootWeb_2.dto.response.ResponseData;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +21,7 @@ public class UserController {
     }
 
     @PutMapping("/{userId}")
-    public ResponseData<?> updateUser(@PathVariable int userId, @RequestBody UserRequestDto userDto) {
+    public ResponseData<?> updateUser(@Min(1) @PathVariable int userId, @RequestBody UserRequestDto userDto) {
         System.out.println("Request update userID= " + userId);
         return new ResponseData<>(HttpStatus.ACCEPTED.value(), "User updated successfully");
     }
@@ -47,9 +48,9 @@ public class UserController {
     }
 
     @GetMapping("/listUser")
-    public ResponseData<List<UserRequestDto>> getAllUser(
+    public ResponseData<List<UserRequestDto>> getAllUser(@Valid
             @RequestParam(required = false) String email, @RequestParam(defaultValue = "0") int pageNo,
-            @RequestParam(defaultValue = "10") int pageSize) {
+            @Max(10) @RequestParam(defaultValue = "10") int pageSize) {
         System.out.println("Request retrieve all users");
         return new ResponseData<>(HttpStatus.OK.value(), "Get user", List.of(
                 new UserRequestDto("acc1", "acc", "a@gmail.com", "1234568901"),

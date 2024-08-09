@@ -14,7 +14,7 @@ import java.lang.annotation.*;
 public @interface EnumPattern {
     String name();
     String regex();
-    String message() default "{name} must match {regex}";
+    String message() default  "{name} must match {regex}";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 }

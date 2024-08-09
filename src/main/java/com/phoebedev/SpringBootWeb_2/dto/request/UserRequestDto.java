@@ -26,24 +26,32 @@ import java.util.List;
 public class UserRequestDto implements Serializable {
     @NotBlank(message = "firstname must be not blank")
     private String firstName;
-    @NotNull(message = "lastname must be not blank")
+
+    @NotNull(message = "lastname must be not null")
     private String lastName;
+
     @GenderSubSet(anyOf = {Gender.MALE, Gender.FEMALE, Gender.OTHER})
     private Gender gender;
+
     @Email(message = "email invalid format")
     private String email;
+
 //    @Pattern(regexp = "^\\d{10}$", message= "phone invalid format")
     @PhoneNumber
     private String phone;
+
     @NotNull(message = "DOB must be not null")
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @JsonFormat(pattern = "dd/MM/yyyy")
     private Date dob;
-    @EnumPattern(name = "status", regex = "ACTIVE|INACTIVE|NONE")
+
+    @EnumPattern(name="status", regex="ACTIVE|INACTIVE|NONE")
     private UserStatus status;
-    @NotBlank(message = "type must be not null")
-    @EnumValue(name="type", enumClass = UserType.class)
+
+    @NotNull(message = "type must be not null")
+    @EnumValue(name="type", enumClass=UserType.class)
     private String type;
+
     @NotEmpty
     List<String> permission;
 

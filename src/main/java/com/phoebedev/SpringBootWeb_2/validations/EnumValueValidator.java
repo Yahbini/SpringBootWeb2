@@ -12,7 +12,7 @@ public class EnumValueValidator implements ConstraintValidator<EnumValue, CharSe
 
     @Override
     public boolean isValid(CharSequence charSequence, ConstraintValidatorContext constraintValidatorContext) {
-        if(charSequence == null) {
+            if(charSequence == null) {
             return true;
         }
 
