@@ -10,6 +10,7 @@ import com.phoebedev.SpringBootWeb_2.interfaces.PhoneNumber;
 import com.phoebedev.SpringBootWeb_2.enums.UserStatus;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -25,6 +26,7 @@ import java.util.List;
 @NoArgsConstructor
 public class UserRequestDto implements Serializable {
     @NotBlank(message = "firstname must be not blank")
+    @EqualsAndHashCode.Include
     private String firstName;
 
     @NotNull(message = "lastname must be not null")
