@@ -1,5 +1,6 @@
 package com.phoebedev.SpringBootWeb_2.controller;
 
+import com.phoebedev.SpringBootWeb_2.configuration.Translator;
 import com.phoebedev.SpringBootWeb_2.dto.request.UserRequestDto;
 import com.phoebedev.SpringBootWeb_2.dto.response.ResponseData;
 import jakarta.validation.Valid;
@@ -17,13 +18,13 @@ public class UserController {
 
     @PostMapping(value = "/addUser", headers = "apiKey=v1.0")
     public ResponseData<Integer> addUser(@Valid @RequestBody UserRequestDto userDto) {
-        return new ResponseData<>(HttpStatus.CREATED.value(), "User added successfully", 1);
+        return new ResponseData<>(HttpStatus.CREATED.value(), Translator.toLocale("user.add.success"), 1);
     }
 
     @PutMapping("/{userId}")
     public ResponseData<?> updateUser(@Min(1) @PathVariable int userId, @RequestBody UserRequestDto userDto) {
         System.out.println("Request update userID= " + userId);
-        return new ResponseData<>(HttpStatus.ACCEPTED.value(), "User updated successfully");
+        return new ResponseData<>(HttpStatus.ACCEPTED.value(), Translator.toLocale("user.upd.success"),"User updated successfully");
     }
 
 
@@ -31,7 +32,7 @@ public class UserController {
     //required = false ko cần thiết nhập
     public ResponseData<?> changeStatus(@PathVariable int userId, @RequestParam(required = false) boolean status) {
         System.out.println("Request change status userID= " + userId);
-        return new ResponseData<>(HttpStatus.ACCEPTED.value(), "User status changed successfully");
+        return new ResponseData<>(HttpStatus.ACCEPTED.value(), Translator.toLocale("user.add.success"),1);
     }
 
     @DeleteMapping("/{userId}")
