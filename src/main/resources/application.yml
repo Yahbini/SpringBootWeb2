@@ -1,11 +1,11 @@
+# nên cấu hình database ở yml,...
 sping:
   application:
-   name: SpringBootWeb2
+    name: SpringBootWeb2
 
-open:
-  api:
-    title: API-Service Document
-    version: 3.0.0.2
-    description: description
-    serverUrl: http://localhost:8080
-    serverName: Server test
+spring:
+  profiles:
+    active: @spring.profiles.active@
+
+
+
