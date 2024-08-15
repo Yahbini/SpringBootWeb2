@@ -16,22 +16,20 @@ import org.springframework.context.annotation.Profile;
 import java.util.List;
 
 @Configuration
-//@Profile({"dev", "test"})
 @Profile("!prod") // build tất cả môi trường tru product
 public class OpenApiConfig {
 
     @Bean
-    public OpenAPI customOpenAPI(@Value("${open.api.title}") String title,
-                                 @Value("${open.api.version}") String version,
-                                 @Value("${open.api.description}") String description,
-                                 @Value("${open.api.serverUrl}") String serverUrl,
-                                 @Value("${open.api.serverName}") String serverName)
+    public OpenAPI customOpenAPI(@Value("${openapi.service.title}") String title,
+                                 @Value("${openapi.service.version}") String version,
+                                 @Value("${openapi.service.server}") String serverUrl,
+                                 @Value("${openapi.service.api-docs}") String serverName)
     {
         return new OpenAPI().info(new Info()
                                 .title(title)
                                 .version(version)
-                                .description(description)
-                                .license(new License().name("Api License 3.0.0"). url("http://domain.vn/license.3.0.0")))
+                                .license(new License().name("Api License 1.0.0"). url("http://domain.vn/license.3.0" +
+                                        ".0")))
                             .servers(List.of(new Server().url(serverUrl).description(serverName)));
 //                            .components
 //                                    (new Components()
